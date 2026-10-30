@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>공과대학 소식지 - OCTOBER 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f0f2f5;
+    --panel: #ffffff;
+    --navy: #1e3c72;
+    --navy-soft: #a0b8e0;
+    --ink: #222222;
+    --ink-soft: #555555;
+    --accent: #a6155f;
+    --accent-tint: #fbe9f1;
+    --line: #e0e0e0;
+    --gray-panel: #f8f9fa;
+  }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', -apple-system, BlinkMacSystemFont, "Malgun Gothic", sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  #newsletter {
+    max-width: 480px;
+    margin: 0 auto;
+    padding-bottom: 44px;
+  }
+
+  .title {
+    padding: 34px 20px 22px;
+    background: var(--navy);
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+  .eyebrow {
+    display: inline-block;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--navy-soft);
+    margin: 0 0 14px;
+  }
+  .title h1 {
+    font-size: 23px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin: 0 0 14px;
+    letter-spacing: -0.02em;
+    color: #ffffff;
+  }
+  .sub_title {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .sub_title span {
+    font-size: 12px;
+    color: var(--navy-soft);
+    line-height: 1.6;
+  }
+
+  .info__wrap { padding: 0 16px; }
+
+  h3 {
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    margin: 36px 4px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--navy);
+  }
+  h3::before {
+    content: "";
+    width: 4px;
+    height: 17px;
+    background: var(--accent);
+    border-radius: 2px;
+    display: inline-block;
+  }
+
+  /* News feed */
+  .news-list {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .news-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    background: var(--panel);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 2px rgba(30,60,114,0.04), 0 6px 16px rgba(30,60,114,0.05);
+  }
+  .news-img {
+    margin: 0;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #eee;
+  }
+  .news-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .news-no {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 11px;
+    font-weight: 700;
+    color: #fff;
+    background: rgba(166,21,95,0.92);
+    padding: 3px 9px;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+  .news-body {
+    padding: 15px 16px 17px;
+  }
+  .news-tag {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+  .news-body h2 {
+    font-size: 15.5px;
+    font-weight: 700;
+    line-height: 1.48;
+    margin: 0 0 8px;
+    color: var(--navy);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-text {
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0 0 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .news-link {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #fff;
+    background: var(--accent);
+    padding: 7px 14px;
+    border-radius: 100px;
+  }
+
+  /* Event card */
+  .event-card {
+    background: var(--panel);
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    box-shadow: 0 1px 2px rgba(30,60,114,0.04), 0 6px 16px rgba(30,60,114,0.05);
+  }
+  .event-date {
+    background: var(--navy);
+    padding: 16px;
+    text-align: center;
+  }
+  .event-no {
+    display: block;
+    font-size: 10.5px;
+    color: var(--navy-soft);
+    margin-bottom: 4px;
+  }
+  .event-when {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .event-info {
+    padding: 16px 18px 18px;
+  }
+  .event-detail {
+    font-size: 13px;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+    line-height: 1.5;
+  }
+  .event-detail strong {
+    color: var(--ink);
+    font-weight: 700;
+    margin-right: 2px;
+  }
+  .event-highlight {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin: 10px 0 0;
+    line-height: 1.6;
+  }
+
+  /* Appointments */
+  .appt-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .appt-item {
+    background: var(--gray-panel);
+    border-left: 3px solid var(--accent);
+    padding: 13px 13px 13px 14px;
+    border-radius: 0 8px 8px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .appt-name {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+  }
+  .appt-role {
+    font-size: 12px;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+
+  /* Condolences */
+  .cond-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .cond-item {
+    background: var(--gray-panel);
+    border-left: 3px solid #888888;
+    padding: 14px 16px;
+    border-radius: 0 8px 8px 0;
+  }
+  .cond-title {
+    font-size: 13px;
+    font-weight: 800;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .cond-detail {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 36px;
+    background: var(--navy);
+    padding: 26px 20px;
+    border-radius: 20px 20px 0 0;
+  }
+  .footer-links {
+    padding-bottom: 14px;
+    margin-bottom: 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+  }
+  .footer-links a {
+    color: var(--navy-soft);
+    text-decoration: none;
+    font-size: 12.5px;
+    margin: 0 9px;
+  }
+  .footer-links span {
+    color: var(--navy-soft);
+    font-size: 12px;
+  }
+  footer p {
+    font-size: 11.5px;
+    font-weight: 500;
+    color: var(--navy-soft);
+    line-height: 1.8;
+    margin: 0;
+  }
+  footer p a {
+    color: var(--navy-soft);
+  }
+
+  /* Seminars */
+  .sem-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .sem-item {
+    background: var(--gray-panel);
+    border-left: 3px solid var(--accent);
+    padding: 14px 16px;
+    border-radius: 0 8px 8px 0;
+  }
+  .sem-tag {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent);
+    margin: 0 0 6px;
+  }
+  .sem-title {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.45;
+    margin: 0 0 6px;
+  }
+  .sem-by {
+    font-size: 12px;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  .event-img { display:block; width:100%; height:auto; border-radius:10px; margin:12px 0 0; }
+  .event-list { margin:8px 0 0; padding:0; list-style:none; }
+  .event-list li { font-size:13px; color:var(--ink-soft); line-height:1.6; padding-left:12px; text-indent:-12px; }
+  .event-list li::before { content:"- "; }
+</style>
+</head>
+<body>
+  <div id="newsletter">
+    <div class="title">
+      <span class="eyebrow">OCTOBER 2026</span>
+      <h1>공과대학 소식지</h1>
+      <p class="sub_title"><span>미래를 이끄는 대학, Global TOP 100 전북대학교</span><span>Transforming the World for Tomorrow</span></p>
+    </div>
+
+    <div class="info__wrap">
+      <h3>공대소식</h3>
+      <div class="news-list">
+        <a href="https://eng.jbnu.ac.kr/eng/39/news/detail/1173?cgIdx=97&amp;amp;type=photoboard&amp;amp;orderYn=Y&amp;amp;pwdYn=N&amp;amp;targetYn=N" class="news-card" target="_blank" rel="noopener">
+          <figure class="news-img">
+            <img src="https://www.jbnu.ac.kr/common/file.do?file=Dz0yUxzaYhLYHfgneCMoyK/UfDhkkO+d/TUd7j0Asv9FY7DXK1/8DfT+oU3I6y2V" alt="전북대 G-램프사업단" loading="lazy" />
+            <span class="news-no">01</span>
+          </figure>
+          <div class="news-body">
+            <span class="news-tag">2026.10.16 · 사업단</span>
+            <h2>전북대 G-램프사업단, 'Young Star' 상·하반기 연속 배출</h2>
+            <p class="news-text">전북대학교 G-램프사업단이 올해 상·하반기 연속으로 ‘G-LAMP Young Star’ 선정자를 배출하며 차세대 기초과학 연구인재 육성 성과를 이어가고 있다. 전북대 G-램프사업단은 물질에너지기초과학연구소 소속 찬드란 바가바스 박사(지도교수 라용호)가 한국연구재단이 주관하는 ‘2026년 하반기 대학기초연구소지원사업(G-LAMP) Young Star’에 선정돼 한국연구재단 이사장상을 수상했다고 15일 밝혔다. 올해 상반기 신소재공학부 오정균 박사과정생에 이은 두 번째 선정이다. ‘G-LAMP Young Star’는 대학기초연구소지원사업에 참여하는 박사후연구원과 석·박사과정생 가운데 우수한 연구 성과를 거둔 젊은 과학자를 선발해 포상하는 제도다. 찬드란 바가바스 박사는 2025년 9월부터 G-LAMP 사업에 참여해 III족 질화물(III-nitride) 기반 반도체 나노구조를 활용한 친환경 수소 생산과 에너지 변환 연구를 수행해왔다. 기초과학에 기반한 소재 설계부터 실제 에너지 기술로의 응용 가능성까지 연구 범위를 넓혀왔다.</p>
+            <span class="news-link">자세히 보기 →</span>
+          </div>
+        </a>
+        <a href="https://eng.jbnu.ac.kr/eng/39/news/detail/1174?cgIdx=97&amp;amp;type=photoboard&amp;amp;orderYn=Y&amp;amp;pwdYn=N&amp;amp;targetYn=N" class="news-card" target="_blank" rel="noopener">
+          <figure class="news-img">
+            <img src="https://eng.jbnu.ac.kr/api/data/img/39/189457a7-665c-4315-937f-a688f190c74d.png" alt="유승화·진경환 교수팀" loading="lazy" />
+            <span class="news-no">02</span>
+          </figure>
+          <div class="news-body">
+            <span class="news-tag">2026.10.19 · 개발</span>
+            <h2>유승화·진경환 교수팀, 전자빔 조사 이용 산소 결함 제어로 고효율 광촉매 기술 개발</h2>
+            <p class="news-text">전북대학교 연구진이 전자빔 조사를 이용하여 귀금속 의존도를 낮춘 광촉매 개질 기술을 개발해 학계의 주목을 받고 있다. 전북대 양자시스템공학과 유승화 교수, 물리학과 진경환 교수 공동연구팀은 꿈의 신소재로 불리는 2차원 나노소재 맥신(MXene)에 이산화티타늄(TiO2)을 결합한 이종 접합구조 광촉매(TMX)를 제조하고, 이에 전자빔 조사로 산소 결함을 제어해 물 분해 수소 발생률을 대폭 향상시키는 기술을 개발했다고 밝혔다. 이산화티타늄(TiO2)은 안정적이고 저렴한 광촉매지만, 태양광 중 자외선만 흡수해 가시광선 활용이 어렵고, 빛으로 생성된 전자-정공의 재결합이 빨라 수소 생산 효율이 낮다. 이를 개선하기 위해, 결함을 도입해 빛의 흡수를 늘리거나 조촉매*를 도입해 전하 분리와 수송을 원활하게 하는 연구가 활발하다.</p>
+            <span class="news-link">자세히 보기 →</span>
+          </div>
+        </a>
+        <a href="https://eng.jbnu.ac.kr/eng/39/news/detail/1175?cgIdx=97&amp;amp;type=photoboard&amp;amp;orderYn=Y&amp;amp;pwdYn=N&amp;amp;targetYn=N" class="news-card" target="_blank" rel="noopener">
+          <figure class="news-img">
+            <img src="https://eng.jbnu.ac.kr/api/data/img/39/695d4e82-cb7b-4b38-94eb-15bd2df2e051.png" alt="AI Robotics Lab" loading="lazy" />
+            <span class="news-no">03</span>
+          </figure>
+          <div class="news-body">
+            <span class="news-tag">2026.10.21 · 연구성과</span>
+            <h2>AI Robotics Lab, 인간·공간 이해하는 로봇 지능으로 피지컬 AI 연구 지평 넓혀</h2>
+            <p class="news-text">전북대학교 전자공학부 AI Robotics Lab(지도교수 조형기)이 인간과 공간을 이해하고 실제 환경에서 스스로 움직이는 로봇 지능 기술을 선보이며 피지컬 AI 연구의 지평을 넓히고 있다. 연구팀은 지난 10월 13일부터 15일까지 KAIST 대전 본원에서 열린 'Nature Conference: Autonomous Robotics'에서 인체 내부의 3차원 인지부터 로봇별 이동 능력을 고려한 공간 이해, 실제 환경에서의 자율 이동·조작까지 아우르는 연구성과 3편을 발표했다. 이번 행사는 세계적 학술 출판사 Nature가 로보틱스를 단독 주제로 개최한 첫 Nature Conference다. 세계적인 로봇공학 석학들과 Nature 에디터들이 모여 자율로봇과 피지컬 AI, 체화지능(Embodied Intelligence), 로봇 인지·조작, 인간-로봇 상호작용 분야의 최신 성과와 미래 연구 방향을 논의했다.</p>
+            <span class="news-link">자세히 보기 →</span>
+          </div>
+        </a>
+        <a href="https://eng.jbnu.ac.kr/eng/39/news/detail/1176?cgIdx=97&amp;amp;type=photoboard&amp;amp;orderYn=Y&amp;amp;pwdYn=N&amp;amp;targetYn=N" class="news-card" target="_blank" rel="noopener">
+          <figure class="news-img">
+            <img src="https://eng.jbnu.ac.kr/api/data/img/39/55976795-e65a-42b7-89f7-87995effffc6.jpg" alt="정광운 교수팀" loading="lazy" />
+            <span class="news-no">04</span>
+          </figure>
+          <div class="news-body">
+            <span class="news-tag">2026.10.21 · 선정</span>
+            <h2>정광운 교수팀, 분자 배열로 빛 제어…'Small' 표지논문 선정</h2>
+            <p class="news-text">정광운 교수 연구팀(공과대학 고분자나노공학과, 대학원 나노융합공학과)이 분자들이 스스로 모이는 ‘자기조립’ 과정과 배열을 조절해 빛을 내는 특성을 제어하는 방법을 제시했다. 이번 성과는 정보를 선택적으로 표시하고 읽어내는 광학 암호화 소재 개발에 활용될 것으로 기대된다. 이번 연구는 나노과학, 재료과학 및 첨단 기능성 소재 분야의 연구를 다루는 세계적 학술지 『Small』 게재됐으며, 연구의 학술적 성과를 인정받아 2026년 9월호 표지논문으로 선정됐다. 연구팀은 피렌(pyrene) 기반 액정 분자(Py-LCM)를 설계·합성하고, 분자들이 형성하는 나노구조와 배열이 발광 특성에 미치는 영향을 분석했다. 그 결과, 용액의 극성과 농도에 따라 분자가 모여 배열되는 방식이 달라지고, 이에 따라 서로 다른 발광 특성이 나타나는 것을 확인했다.</p>
+            <span class="news-link">자세히 보기 →</span>
+          </div>
+        </a>
+        <a href="https://eng.jbnu.ac.kr/eng/39/news/detail/1177?cgIdx=97&amp;amp;type=photoboard&amp;amp;orderYn=Y&amp;amp;pwdYn=N&amp;amp;targetYn=N" class="news-card" target="_blank" rel="noopener">
+          <figure class="news-img">
+            <img src="https://eng.jbnu.ac.kr/api/data/img/39/c7228127-4f86-431a-9010-783389c34522.jpg" alt="조재혁 교수" loading="lazy" />
+            <span class="news-no">05</span>
+          </figure>
+          <div class="news-body">
+            <span class="news-tag">2026.10.21 · 선정</span>
+            <h2>조재혁 교수, ‘세계 상위 2% 연구자’ 2년 연속 선정</h2>
+            <p class="news-text">조재혁 교수(소프트웨어공학과·인공지능 분야)가 스탠퍼드대학교 연구진과 엘스비어(Elsevier)의 학술 영향력 분석에 따른 ‘세계 상위 2% 연구자’에 2025년에 이어 2026년에도 이름을 올렸다. 연구자 정보 플랫폼 TOPSCINET의 연간 영향력(Single Year) 자료에 따르면, 조 교수의 자기인용을 제외한 종합 순위는 2025년 329,810위에서 2026년 221,437위로 108,373계단 상승했다. 세부 분야인 네트워킹·통신 분야 순위도 4,236위에서 2,735위로 올라 최근 연구 성과의 학술적 영향력이 높아졌음을 보여줬다. 이번 2026년판 연간 영향력 평가는 2025년 한 해의 논문 인용 실적을 대상으로 한다. Scopus 데이터베이스를 기반으로 논문 인용 수와 h-index, 공동저자 및 저자 역할 등을 반영한 종합 영향력 지표(c-score)를 산출하며, 174개 세부 분야별 상위 2% 등의 기준에 따라 연구자를 선정한다. 조 교수는 감염병 대응 시스템 개발과 예측 모델링, 환경 유해인자 분석을 위한 빅데이터 AI 모델 개발 등 실생활 문제 해결을 위한 AI 융합 연구를 수행해왔다. 특히 자율적인 목표 설정과 실행을 지향하는 에이전틱 AI(Agentic AI)와 현상의 메커니즘을 설명하기 위한 뉴럴심볼릭 AI(Neural-Symbolic AI) 연구에 주력하고 있다.</p>
+            <span class="news-link">자세히 보기 →</span>
+          </div>
+        </a>
+        <a href="https://eng.jbnu.ac.kr/eng/39/news/detail/1178?cgIdx=97&amp;amp;type=photoboard&amp;amp;orderYn=Y&amp;amp;pwdYn=N&amp;amp;targetYn=N" class="news-card" target="_blank" rel="noopener">
+          <figure class="news-img">
+            <img src="https://eng.jbnu.ac.kr/api/data/img/39/9acedba0-1f4a-44ce-9f71-6c2587d3ad36.png" alt="이백·임정섭 대학원생" loading="lazy" />
+            <span class="news-no">06</span>
+          </figure>
+          <div class="news-body">
+            <span class="news-tag">2026.10.22 · 수상</span>
+            <h2>이백·임정섭 대학원생, 국제 반도체 학술대회 수상</h2>
+            <p class="news-text">전자공학부 통신회로 및 시스템 연구실 소속 이백·임정섭 대학원생(지도교수 임동구)이 드론 신호 탐지를 위한 반도체 수신기 설계 연구로 2026년도 국제 시스템온칩 반도체 설계 학술대회(ISOCC)에서 ‘IEEE CAS Tague Chapter Award’를 수상했다. ISOCC는 세계 각국의 반도체 회로 설계 연구자들이 연구 성과와 기술을 공유하는 국제 학술대회다. 국내외 대학과 기업, 연구기관의 전문가들이 참여하며 삼성전자, SK하이닉스, ETRI, KETI, Cadence, Synopsys 등 40여 개 기업과 연구기관이 후원하고 있다. 이번 연구를 주도한 이백 대학원생은 드론 탐지용 광대역 수신기 설계를 다룬 논문 ‘A Blocker-Tolerant Wideband Receiver Employing a Frequency-Selective Positive- and Negative-Capacitive-Feedback TIA for Drone Detection’을 발표했다.</p>
+            <span class="news-link">자세히 보기 →</span>
+          </div>
+        </a>
+        <a href="https://eng.jbnu.ac.kr/eng/39/news/detail/1179?cgIdx=97&amp;amp;type=photoboard&amp;amp;orderYn=Y&amp;amp;pwdYn=N&amp;amp;targetYn=N" class="news-card" target="_blank" rel="noopener">
+          <figure class="news-img">
+            <img src="https://eng.jbnu.ac.kr/api/data/img/39/9a860787-2522-4689-b338-6c04ef255790.jpg" alt="이승주 학부생" loading="lazy" />
+            <span class="news-no">07</span>
+          </figure>
+          <div class="news-body">
+            <span class="news-tag">2026.10.22 · 선정</span>
+            <h2>이승주 학부생, 중소벤처기업부 '모두의 창업' 선정</h2>
+            <p class="news-text">이승주 학생(공학계열2 1학년)이 RF 하드웨어 기술을 기반으로 한 창업 아이디어로 중소벤처기업부 주관 ‘모두의 창업 프로젝트’ 2기 일반·기술트랙에 선정됐다. ‘모두의 창업 프로젝트’는 혁신적인 아이디어를 가진 국민이 창업에 도전할 수 있도록 기획부터 멘토링, 시제품 제작, 사업화 검증까지 단계별로 지원하는 국가 창업지원 사업이다. 이번 2기 모집은 선발 규모를 1차 대비 두 배로 확대해 일반·기술트랙 8,000명, 로컬트랙 2,000명 등 총 1만 명을 선발하는 규모로 진행됐다. 총 9만 2,838명이 지원해 평균 9.3대 1의 경쟁률을 기록했으며, 이승주 학생이 지원한 일반·기술트랙에는 8만 764명이 몰려 약 10대 1의 경쟁률을 보였다. 이승주 학생은 이번 선정으로 1라운드 창업활동자금 200만 원과 100만 원 상당의 AI 솔루션 지원, 책임 멘토링을 받는다. 이를 바탕으로 창업 아이디어를 구체화하고 사업화 가능성을 검증할 계획이다. 구체적인 아이디어는 향후 사업화 과정에서 공개될 예정이다.</p>
+            <span class="news-link">자세히 보기 →</span>
+          </div>
+        </a>
+        <a href="https://eng.jbnu.ac.kr/eng/39/news/detail/1180?cgIdx=97&amp;amp;type=photoboard&amp;amp;orderYn=Y&amp;amp;pwdYn=N&amp;amp;targetYn=N" class="news-card" target="_blank" rel="noopener">
+          <figure class="news-img">
+            <img src="https://eng.jbnu.ac.kr/api/data/img/39/653c91e2-0285-462f-8756-de4a924fabfc.png" alt="김용민 교수팀" loading="lazy" />
+            <span class="news-no">08</span>
+          </figure>
+          <div class="news-body">
+            <span class="news-tag">2026.10.22 · 개발</span>
+            <h2>김용민 교수팀, 물체 접근 감지하고 붙잡는 ‘소프트 로봇’ 개발</h2>
+            <p class="news-text">전북대학교 김용민 교수(공대 화학공학부) 연구팀이 KAIST(총장 배충식) 문홍철 교수팀과 공동연구를 통해 물체가 가까이 오는 것을 감지하고, 빛을 받으면 움직여 물체를 붙잡는 이온성 소프트 로봇 ‘이오노그래스퍼(Ionograsper)’ 를 개발했다. 이 로봇의 핵심은 하나의 부드러운 소재가 센서와 인공근육 역할을 함께 한다는 점이다. 짧은 시간 동안 약한 자외선을 비추는 것만으로 움직임을 유도할 수 있으며, 빛을 끈 뒤에도 추가적인 에너지 공급 없이 변형된 상태를 10분 이상 유지한다. 기존 소프트 로봇은 주변 환경을 감지하는 센서와 움직임을 만드는 구동기를 따로 장착하는 경우가 많다. 이 때문에 부품과 배선이 늘어나 구조가 복잡해지고, 움직이거나 특정 자세를 유지하는 데 지속적인 에너지 공급이 필요할 수 있다. 연구팀은 이러한 한계를 줄이기 위해 감지와 구동 기능을 하나의 이온성 고분자 소재에 통합했다.</p>
+            <span class="news-link">자세히 보기 →</span>
+          </div>
+        </a>
+        <a href="https://eng.jbnu.ac.kr/eng/39/news/detail/1181?cgIdx=97&amp;amp;type=photoboard&amp;amp;orderYn=Y&amp;amp;pwdYn=N&amp;amp;targetYn=N" class="news-card" target="_blank" rel="noopener">
+          <figure class="news-img">
+            <img src="https://eng.jbnu.ac.kr/api/data/img/39/6c9f1acc-8fc2-464b-8036-9279d6adc434.png" alt="이기태 교수팀" loading="lazy" />
+            <span class="news-no">09</span>
+          </figure>
+          <div class="news-body">
+            <span class="news-tag">2026.10.27 · 연구성과</span>
+            <h2>이기태 교수팀, 에너지 소재 성능 좌우하는 '표면 원자 배열' 규명</h2>
+            <p class="news-text">이기태 교수(신소재공학부 전자재료공학전공, 대학원 JBNU-KIST 산학연융합학과·에너지저장변환공학과) 연구팀이 소재 표면의 원자 구성과 배열에 따라 전자적 특성과 화학반응이 달라지는 원리를 규명했다. 이번 성과는 태양광을 이용한 수소 생산 등 에너지 전환에 활용되는 소재를 원자 수준에서 정밀하게 설계하는 데 기초자료가 될 것으로 기대된다. 이 교수팀은 DGIST 에너지공학과 이태훈 교수 연구팀과 공동으로 에너지 전환 소재인 비스무트 바나데이트(BiVO4)의 표면 구조를 컴퓨터 시뮬레이션으로 분석했다. 연구 결과는 재료화학 분야 국제학술지 『Journal of Materials Chemistry A』에 ‘Surface reconstruction tunes band edges and lattice-oxygen reactivity on BiVO4(010) photoanodes’라는 제목으로 게재됐다.</p>
+            <span class="news-link">자세히 보기 →</span>
+          </div>
+        </a>
+      </div>
+
+      <h3>JIANT-IT 인력양성 세미나</h3>
+      <div class="sem-list">
+          <div class="sem-item">
+            <span class="sem-tag">No.01 · 10/01 (15-16시) · ZOOM</span>
+            <p class="sem-title">Time Series Prediction: From Traditional Methods to Foundation Models</p>
+            <p class="sem-by">이상준 (선임연구원) | 한국전자통신연구원(ETRI)</p>
+          </div>
+          <div class="sem-item">
+            <span class="sem-tag">No.02 · 10/01 (16-17시) · ZOOM</span>
+            <p class="sem-title">Rethinking I/O and CPU Resource Management Across Containers, VMs, and MicroVMs</p>
+            <p class="sem-by">이경운 (부교수) | 경북대학교</p>
+          </div>
+          <div class="sem-item">
+            <span class="sem-tag">No.03 · 10/08 (17-18시) · ZOOM</span>
+            <p class="sem-title">드론용 AI 반도체</p>
+            <p class="sem-by">정연모 (명예교수) | 경희대학교</p>
+          </div>
+          <div class="sem-item">
+            <span class="sem-tag">No.04 · 10/22 (15-16시) · ZOOM</span>
+            <p class="sem-title">DNA data storage</p>
+            <p class="sem-by">최한솔 (조교수) | 이화여자대학교</p>
+          </div>
+          <div class="sem-item">
+            <span class="sem-tag">No.05 · 10/22 (16-17시) · ZOOM</span>
+            <p class="sem-title">초음파 시스템 및 신호처리</p>
+            <p class="sem-by">이문환 (연구원) | 막스플랑크연구소 (독일)</p>
+          </div>
+          <div class="sem-item">
+            <span class="sem-tag">No.06 · 10/29 (16-17시) · ZOOM</span>
+            <p class="sem-title">인체와 교감 가능한 유연 광전자 소재 연구</p>
+            <p class="sem-by">정용철 (선임연구원) | 한국생산기술연구원</p>
+          </div>
+      </div>
+
+      <h3>2026학년도 공과대학 공학체전</h3>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-no">No. 01</span>
+          <span class="event-when">10/06(화) ~ 10/08(목)</span>
+        </div>
+        <div class="event-info">
+          <p class="event-detail"><strong>장소:</strong> 전북대학교 대운동장 일대</p>
+          <p class="event-detail"><strong>주최/주관:</strong> 공과대학</p>
+          <img class="event-img" src="https://eng.jbnu.ac.kr/api/data/img/40/b8036f6d-d51e-4f50-9a67-72ce8ba57be6.jpg" alt="공학체전" loading="lazy" />
+        </div>
+      </div>
+
+      <h3>RTX AI PC Campus Seminar</h3>
+      <div class="event-card">
+        <div class="event-date">
+          <span class="event-no">No. 01</span>
+          <span class="event-when">10/14(수) 10:00 ~ 12:00</span>
+        </div>
+        <div class="event-info">
+          <p class="event-detail"><strong>장소:</strong> 전대 학술문화회관</p>
+          <p class="event-detail"><strong>내용</strong></p>
+          <ul class="event-list">
+            <li>AI를 위한 NVIDIA GeForce RTX</li>
+            <li>RTX AI PC 기술 업데이트와 시연</li>
+            <li>RTX AI Case Study 현업 AI 개발자의 스토리</li>
+          </ul>
+          <img class="event-img" src="https://eng.jbnu.ac.kr/api/data/img/40/eafb48b1-65d9-423b-ae90-d1b312fbbad5.jpg" alt="NVIDIA" loading="lazy" />
+        </div>
+      </div>
+
+      <h3>겸무발령 및 위원임명</h3>
+      <div class="appt-list">
+          <div class="appt-item">
+            <span class="appt-name">교수 김정무</span>
+            <span class="appt-role">로봇혁신인재양성센터 부센터장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">교수 김정무</span>
+            <span class="appt-role">로봇혁신인재양성센터 기획·성과관리부 부서장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">조교수 박철헌</span>
+            <span class="appt-role">로봇혁신인재양성센터 장비·인프라부 부서장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">부교수 조형기</span>
+            <span class="appt-role">로봇혁신인재양성센터 교육·학생지원부 부서장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">조교수 박시웅</span>
+            <span class="appt-role">로봇혁신인재양성센터 산학연계부 부서장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">교수 이기태</span>
+            <span class="appt-role">수소에너지시스템연구소장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">부교수 고태식</span>
+            <span class="appt-role">VITAL연구센터 부센터장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">조교수 한승용</span>
+            <span class="appt-role">VITAL연구센터 인재양성부장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">교수 윤학영</span>
+            <span class="appt-role">VITAL연구센터 산학협력부장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">교수 강래형</span>
+            <span class="appt-role">로스알라모스연구소-전북대학교한국공학연구소장</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">교수 권대규</span>
+            <span class="appt-role">전북대학교 AI기반 메카노바이오헬스 전문인력양성사업단 운영위원회 위원</span>
+          </div>
+          <div class="appt-item">
+            <span class="appt-name">교수 권대규</span>
+            <span class="appt-role">원가계산센터 운영위원회 위원</span>
+          </div>
+      </div>
+
+      <h3>경조사 알림</h3>
+      <div class="cond-list">
+        <div class="cond-item">
+          <p class="cond-title">화학공학부 서형기 교수 부친상</p>
+          <p class="cond-detail">발인 : 2026년 10월 01일(목)<br>빈소 : 전북대병원장례식장 특 1호<br>장지 : 익산 정수원 (1차 장지) 개인선영 (2차 장지)</p>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-links">
+        <a href="https://eng.jbnu.ac.kr">홈페이지</a><span>|</span>
+        <a href="https://eng.jbnu.ac.kr/eng/39/news">공대뉴스</a><span>|</span>
+        <a href="https://eng.jbnu.ac.kr/eng/40/info">소식지</a>
+      </div>
+      <p>전북대학교 공과대학 | <a href="https://www.eng.jbnu.ac.kr">www.eng.jbnu.ac.kr</a><br>전북 전주시 덕진구 백제대로 567</p>
+    </footer>
+  </div>
+</body>
+</html>
